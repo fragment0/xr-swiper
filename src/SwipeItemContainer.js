@@ -52,10 +52,11 @@ export default class SwipeItemContainer extends React.Component {
     if (onSwipeStart && !store.swiping) {
       onSwipeStart()
     }
-    store.swiping = true
-    this.node.style.transform = `translateX(${move}px)`
 
     if (e.isFinal) {
+      store.swiping = true
+      this.node.style.transform = `translateX(${move}px)`
+
       if (Math.abs(move) > SwipeItemContainer.threshold) {
         triggerSwipe(move > 0 ? -1 : 1).then(() => { store.swiping = false })
       } else {
